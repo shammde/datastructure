@@ -16,4 +16,7 @@ public abstract class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	
+
 }
