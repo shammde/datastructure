@@ -1,6 +1,9 @@
 package com.sham.puzzle;
 public class Sudoku {
 
+	private static int SIZE = 9;
+	private static int UNSET = 0;
+	
 	public static void main(String args[]){
 
 		/* int sudoku [] [] = {{5,3,0,  0,7,0,  0,0,0},
@@ -109,8 +112,8 @@ public class Sudoku {
 
 	private boolean isQualifiedByRow(int n, int row, int col, int sudoku[][]){
 		boolean retVal = true;
-		if(sudoku[row][col] == 0){
-			for(int index = 0; index < 9; index++){
+		if(sudoku[row][col] == UNSET){
+			for(int index = 0; index < SIZE; index++){
 				if(sudoku[row][index] == n){
 					retVal = false;
 					break;
@@ -122,8 +125,8 @@ public class Sudoku {
 
 	private boolean isQualifiedByColumn(int n, int row, int col, int sudoku[][]){
 		boolean retVal = true;
-		if(sudoku[row][col] == 0){
-			for(int index = 0; index < 9; index++){
+		if(sudoku[row][col] == UNSET){
+			for(int index = 0; index < SIZE; index++){
 				if(sudoku[index][col] == n){
 					retVal = false;
 					break;
@@ -135,7 +138,7 @@ public class Sudoku {
 
 	private boolean isQualifiedByBlock(int n, int row, int col, int sudoku[][]){
 		boolean retVal = true;
-		if(sudoku[row][col] == 0){
+		if(sudoku[row][col] == UNSET){
 			for(int rowIndex = (row - (row % 3)); rowIndex < (row + (3 -(row % 3))); rowIndex++){
 				for(int colIndex = (col - (col % 3)); colIndex < (col + (3 -(col % 3))); colIndex++){
 					if(sudoku[rowIndex][colIndex] == n){
@@ -153,9 +156,9 @@ public class Sudoku {
 		boolean qualified = true;
 
 		//Check entire row of this cell of any non filled is competing for this 
-		for(int tempCol = 0; tempCol < 9; tempCol++){
+		for(int tempCol = 0; tempCol < SIZE; tempCol++){
 			if(tempCol != col){
-				if(sudoku[row][tempCol] == 0){
+				if(sudoku[row][tempCol] == UNSET){
 					if(isQualified(digit, row, tempCol, sudoku)){
 						qualified = false;
 						break;
@@ -172,9 +175,9 @@ public class Sudoku {
 		boolean qualified = true;
 
 		//Check entire column of this cell if any non filled is competing for this 
-		for(int tempRow = 0; tempRow < 9; tempRow++){
+		for(int tempRow = 0; tempRow < SIZE; tempRow++){
 			if(tempRow != row){
-				if(sudoku[tempRow][col] == 0){
+				if(sudoku[tempRow][col] == UNSET){
 					if(isQualified(digit, tempRow, col, sudoku)){
 						qualified = false;
 						break;
@@ -195,7 +198,7 @@ public class Sudoku {
 		for(int rowIndex = (row - (row % 3)); rowIndex < (row + (3 -(row % 3))); rowIndex++){
 			for(int colIndex = (col - (col % 3)); colIndex < (col + (3 -(col % 3))); colIndex++){
 				if(!(rowIndex == row && colIndex == col)){
-					if(sudoku[rowIndex][colIndex] == 0){
+					if(sudoku[rowIndex][colIndex] == UNSET){
 						if(isQualified(digit, rowIndex, colIndex, sudoku)){
 							qualified = false;
 							break;
@@ -213,15 +216,15 @@ public class Sudoku {
 		while(!finalSolution){
 			finalSolution = true;
 			solved = true;
-			for(int row = 0; row < 9; row++){
-				for(int col = 0; col < 9; col++){
-					for(int digit = 1; digit <= 9; digit++){
-						if(sudoku[row][col] == 0 && isOnlyQualified(digit, row, col, sudoku)){
+			for(int row = 0; row < SIZE; row++){
+				for(int col = 0; col < SIZE; col++){
+					for(int digit = 1; digit <= SIZE; digit++){
+						if(sudoku[row][col] == UNSET && isOnlyQualified(digit, row, col, sudoku)){
 							sudoku[row][col] = digit;
 							finalSolution = false;
 							break;
 						}
-						if(sudoku[row][col] == 0){
+						if(sudoku[row][col] == UNSET){
 							solved = false;
 						}
 					}
@@ -234,7 +237,7 @@ public class Sudoku {
 	
 	private boolean solve(int row, int col, int sudoku[][]){
 		boolean retVal = false;
-		while(sudoku[row][col] != 0){
+		while(sudoku[row][col] != UNSET){
 			col++;
 			if(col > 8){
 				row++;
@@ -259,12 +262,12 @@ public class Sudoku {
 				if(retVal){
 					return true;
 				}else{
-					sudoku[row][col] = 0;
+					sudoku[row][col] = UNSET;
 				}
 			}
 		}
 
-		if(sudoku[row][col] == 0){
+		if(sudoku[row][col] == UNSET){
 			return false;
 		}
 		return true;
@@ -272,11 +275,11 @@ public class Sudoku {
 
 	public static void print(int sudoku[][]){
 
-		for(int i = 0; i < 9; i++){
+		for(int i = 0; i < SIZE; i++){
 			if(i == 0){
 				System.out.println("+--------+--------+--------+");
 			}
-			for(int j = 0; j < 9; j++){
+			for(int j = 0; j < SIZE; j++){
 
 				if(j == 0){
 					System.out.print("| ");
