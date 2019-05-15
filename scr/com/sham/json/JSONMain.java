@@ -10,7 +10,7 @@ public class JSONMain {
 		
 		JSONObject jObj = JSONUtils.getJSONObjectFromFile("/com/sham/json/first.json");
 		String names[] = JSONObject.getNames(jObj);
-		System.out.println(jObj.toString(2));
+		System.out.println(jObj.toString());
 		for(String name : names){
 			try {
 				System.out.println(name + ": " + jObj.get(name));
