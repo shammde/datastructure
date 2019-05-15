@@ -29,6 +29,8 @@ public class BinarySearchTreeTraversal {
 		//bst.postOrderIterative(bst.getRoot());
 		System.out.print("\nLevelOder ");
 		bst.levelOrderIterative(bst.getRoot());
+		System.out.println();
+		bst.getRoot().printTree();
 		System.out.println("\nMax Value is " + bst.findMax(bst.getRoot()));
 		System.out.println("Common Ancestor " + bst.findLeastCommonAncestor(bst.getRoot(), 4, 9).getData());
 	}

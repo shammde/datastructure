@@ -128,18 +128,32 @@ public class SingleLinkList {
 	 * @param end
 	 * @return
 	 */
-	public Node<Integer> reverseRecursion (Node<Integer> current, Node<Integer> end) {
-		current.setNext(end);
-		return (current.getNext() != null ? reverseRecursion(current.getNext(), current) : current);
+	public Node<Integer> reverseRecursion (Node<Integer> current, Node<Integer> prev) {
+		if(current == null ){
+			return prev;
+		}
+		Node<Integer> next = current.getNext();
+		current.setNext(prev);
+		return reverseRecursion(next, current);
+	}
+	
+	public boolean printReverse(Node<Integer> head){
+		if(head == null){
+			return true;
+		}
+		if(printReverse(head.getNext())){
+			System.out.print(head.getData() + "->");
+		}
+		return true;
 	}
 	
 	/**
 	 * 
 	 */
 	public void reverseIterative(){
+		Node<Integer> prevNode = null;
 		Node<Integer> currNode = head;
 		Node<Integer> nextNode = null;
-		Node<Integer> prevNode = null;
 		while(currNode!=null){
 			nextNode = currNode.getNext();
 			currNode.setNext(prevNode);

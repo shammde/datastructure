@@ -1,0 +1,21 @@
+{
+	"Array": [
+		"String In Array",
+		"Array Boolean"
+	],
+	"Number": 5,
+	"Object": {
+		"Inner Array": [
+			"India",
+			"New Zealand",
+			"South Africa",
+			"Australia"
+		],
+		"Inner1 Number": 55,
+		"Inner3 String": "Inner String value",
+		"Inner2 Boolean": false
+	},
+	"String": "Hello World",
+	"Boolean": true
+	
+}

@@ -2,21 +2,13 @@ package com.sham.puzzle;
 
 public class Permute {
 
-
-
 	public static void main(String args[]){
-
-		for(String str : permute("123")){
+		for(String str : permute("ABC")){
 			System.out.println(str);
 		}
 	}
-
-
 	public static int factorial(int n){
-		if(n == 0){
-			return 1;
-		}
-		return n * factorial(n -1);
+		return n == 0 ? 1 :n * factorial(n -1);
 	}
 	public static String[] permute(String str){
 
@@ -26,7 +18,6 @@ public class Permute {
 			result[resultIndex] = str;
 			return result;
 		}
-
 		for(int index = 0; index < str.length(); index++){
 			char ch = str.charAt(index);
 			String temp[] = permute(str.substring(0, index) + str.substring(index+1, str.length()));

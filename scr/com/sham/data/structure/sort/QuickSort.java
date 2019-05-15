@@ -1,28 +1,17 @@
 package com.sham.data.structure.sort;
 
-import java.util.Arrays;
+import java.lang.reflect.Array;
 
 public class QuickSort {
-
-	private int array[];
-	private int length;
 	
 
-	public void sort(int[] inputArr) {
-		if (inputArr == null || inputArr.length == 0) {
-			return;
-		}
-		this.array = inputArr;
-		length = inputArr.length;
-		quickSort(0, length - 1);
-	}
-
-	private void quickSort(int lowerIndex, int higherIndex) {
+	private void quickSort(int array[], int lowerIndex, int higherIndex) {
 
 		int tempLowIndex = lowerIndex;
 		int tempHighIndex = higherIndex;
 		// calculate pivot number, I am taking pivot as middle index number
-		int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2];
+		/*int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2];*/
+		int pivot = array[(higherIndex+lowerIndex)/2];
 		// Divide into two arrays
 		while (tempLowIndex <= tempHighIndex) {
 			/**
@@ -38,7 +27,9 @@ public class QuickSort {
 				tempHighIndex--;
 			}
 			if (tempLowIndex <= tempHighIndex) {
-				exchangeNumbers(tempLowIndex, tempHighIndex);
+				int temp = array[tempLowIndex];
+				array[tempLowIndex] = array[tempHighIndex];
+				array[tempHighIndex] = temp;
 				//move index to next position on both sides
 				tempLowIndex++;
 				tempHighIndex--;
@@ -46,24 +37,18 @@ public class QuickSort {
 		}
 		// call quickSort() method recursively
 		if (lowerIndex < tempHighIndex){
-			quickSort(lowerIndex, tempHighIndex);
+			quickSort(array, lowerIndex, tempHighIndex);
 		}
 		if (tempLowIndex < higherIndex){
-			quickSort(tempLowIndex, higherIndex);
+			quickSort(array, tempLowIndex, higherIndex);
 		}
-	}
-
-	private void exchangeNumbers(int i, int j) {
-		int temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
 	}
 
 	public static void main(String a[]){
 
 		QuickSort sorter = new QuickSort();
 		int[] input = {24,2,45,20,56,75,2,56,99,53,12};
-		sorter.sort(input);
+		sorter.quickSort(input, 0, input.length - 1);
 		for(int i:input){
 			System.out.print(i);
 			System.out.print(" ");

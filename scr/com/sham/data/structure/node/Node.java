@@ -1,13 +1,23 @@
 package com.sham.data.structure.node;
 
 public class Node <E>{
-	
+
 	private E data;
+	private int height;
 	private Node<E> next;
 	private Node<E> prev;
 	private Node<E> leftChild;
 	private Node<E> rightChild;
-	
+	boolean rThread;
+
+	public boolean isRThread() {
+		return rThread;
+	}
+
+	public void setRThread(boolean rightThread) {
+		this.rThread = rightThread;
+	}
+
 	public Node(){
 		this.data = null;
 		this.next = null;
@@ -19,7 +29,7 @@ public class Node <E>{
 		this.next = next;
 		this.prev = prev;
 	}
-	
+
 	public Node(E data){
 		this.data = data;
 		this.next = null;
@@ -33,7 +43,7 @@ public class Node <E>{
 		this.next = next;
 		this.prev = null;
 	}
-	
+
 	public Node<E> getLastNode(){
 		Node<E> temp = this;
 		while(temp.getNext() != null){
@@ -41,7 +51,7 @@ public class Node <E>{
 		}
 		return temp;
 	}
-	
+
 	public Node <E> getNodeAt(int index) throws Exception{
 		if(index > getLastNodeIndex() || index < 0){
 			throw new Exception("Illegal Operation");
@@ -55,7 +65,7 @@ public class Node <E>{
 			return temp;
 		}
 	}
-	
+
 	public int getLastNodeIndex(){
 		int index = 0;
 		Node<E> temp = this;
@@ -65,7 +75,7 @@ public class Node <E>{
 		}
 		return index;
 	}
-	
+
 	public int size(){
 		return getLastNodeIndex() + 1;
 	}
@@ -107,6 +117,55 @@ public class Node <E>{
 
 	public void setRightChild(Node<E> rightChild) {
 		this.rightChild = rightChild;
+	}
+
+	public void printTree() {
+		if (rightChild != null) {
+			rightChild.printTree(true, "");
+		}
+		printNodeValue();
+		if (leftChild != null) {
+			leftChild.printTree(false, "");
+		}
+	}
+	private void printNodeValue() {
+		if (data == null) {
+			System.out.println("<null>");
+		} else {
+			System.out.print(data.toString());
+		}
+		System.out.print('\n');
+	}
+	// use string and not stringbuffer on purpose as we need to change the indent at each recursion
+	private void printTree(boolean isRight, String indent) {
+		if (rightChild != null) {
+			rightChild.printTree(true, indent + (isRight ? "        " : " |      "));
+		}
+		System.out.print(indent);
+		if (isRight) {
+			System.out.print(" /");
+		} else {
+			System.out.print(" \\");
+		}
+		System.out.print("----- ");
+		printNodeValue();
+		if (leftChild != null) {
+			leftChild.printTree(false, indent + (isRight ? " |      " : "        "));
+		}
+	}
+
+	/**
+	 * @return the height
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height the height to set
+	 */
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }
 

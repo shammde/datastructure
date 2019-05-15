@@ -4,10 +4,12 @@ import com.sham.data.structure.node.Node;
 
 public class DoublyLinkList {
 	
-	Node<Integer> node;
+	Node<Integer> head;
+	Node<Integer> tail;
 	
 	public DoublyLinkList(){
-		node = null;
+		head = null;
+		tail = null;
 	}
 	
 	public boolean add(int data){
@@ -22,7 +24,7 @@ public class DoublyLinkList {
 			} else if(this.size() == index){
 				addLast(data);
 			}else{
-				Node<Integer> tempNode = node.getNodeAt(index - 1);
+				Node<Integer> tempNode = head.getNodeAt(index - 1);
 				Node<Integer> newNode = new Node<Integer>(data);
 				newNode.setNext(tempNode.getNext());
 				tempNode.getNext().setPrev(newNode);
@@ -37,10 +39,11 @@ public class DoublyLinkList {
 	
 	public boolean addLast(int data){
 		
-		if(node == null){
-			node = new Node<Integer>(data);
+		if(head == null){
+			head = new Node<Integer>(data);
+			tail = head;
 		} else {
-			Node <Integer> lastNode = node.getLastNode();
+			Node <Integer> lastNode = head.getLastNode();
 			Node <Integer> tempNode = new Node<Integer>(data);
 			lastNode.setNext(tempNode);
 			tempNode.setPrev(lastNode);
@@ -51,11 +54,11 @@ public class DoublyLinkList {
 	public boolean addFirst(int data){
 		
 		Node<Integer> tempNode = new Node<Integer>(data);
-		tempNode.setNext(node);
-		if(node != null){
-			node.setPrev(tempNode);
+		tempNode.setNext(head);
+		if(head != null){
+			head.setPrev(tempNode);
 		}
-		node = tempNode;
+		head = tempNode;
 		return true;
 	}
 	
@@ -67,7 +70,7 @@ public class DoublyLinkList {
 			} else if(this.size() == index){
 				deleteLast();
 			}else{
-				Node<Integer> tempNode = node.getNodeAt(index - 1);
+				Node<Integer> tempNode = head.getNodeAt(index - 1);
 				tempNode.setNext(tempNode.getNext().getNext());
 			}
 		}else{
@@ -76,12 +79,12 @@ public class DoublyLinkList {
 		return true;
 	}
 	public boolean deleteFirst() throws Exception {
-		if(node == null){
+		if(head == null){
 			throw new Exception("Illegal Operation");
 		}else{
-			Node<Integer> tempNode = node;
-			node = node.getNext();
-			node.setPrev(null);
+			Node<Integer> tempNode = head;
+			head = head.getNext();
+			head.setPrev(null);
 			tempNode.setNext(null);
 			tempNode.setPrev(null);
 			tempNode = null;
@@ -90,13 +93,13 @@ public class DoublyLinkList {
 	}
 	
 	public boolean deleteLast() throws Exception {
-		if(node == null){
+		if(head == null){
 			throw new Exception("Illegal Operation");
 		}else{
 			if(this.size() == 1){
-				node = null;
+				head = null;
 			}else{
-				Node<Integer> tempNode = node.getNodeAt(node.getLastNodeIndex() - 1);
+				Node<Integer> tempNode = head.getNodeAt(head.getLastNodeIndex() - 1);
 				tempNode.setNext(tempNode.getNext().getNext());
 			}
 		}
@@ -105,17 +108,17 @@ public class DoublyLinkList {
 	
 	public int size(){
 		int size = 0;
-		if(node != null){
-			size = node.size();
+		if(head != null){
+			size = head.size();
 		}
 		return size;
 	}
 	
 	public String toString(){
 		StringBuilder strBuf = new StringBuilder("");
-		if(node != null){
-			Node<Integer> tempNode = node;
-			strBuf.append(node.getData());
+		if(head != null){
+			Node<Integer> tempNode = head;
+			strBuf.append(head.getData());
 			while(tempNode.getNext() != null){
 				tempNode = tempNode.getNext();
 				strBuf.append("->" +  tempNode.getData());
@@ -126,8 +129,8 @@ public class DoublyLinkList {
 	
 	public boolean contains(int data){
 		boolean retval = false;
-		if(node != null){
-			Node<Integer> tempNode = node;
+		if(head != null){
+			Node<Integer> tempNode = head;
 			while(tempNode != null){
 				if(tempNode.getData() == data){
 					retval = true;

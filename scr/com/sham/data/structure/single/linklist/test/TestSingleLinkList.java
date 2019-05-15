@@ -38,18 +38,22 @@ public class TestSingleLinkList {
 		linkList.add(6);
 		linkList.add(7);
 		linkList.addAt(0,0);
+		linkList.addFirst(-1);
+		linkList.addAt(-2, 0);
 		System.out.println(linkList.toString());
 		linkList.getTail().setNext(linkList.getAt(4));
 		
 		System.out.println(linkList.isCyclicList());
 		System.out.println(linkList.findBeginOfLoop().getData());
 		System.out.println(linkList.unlinkLoop().getData());
-		
 		System.out.println(linkList.toString());
-		linkList.reverseIterative();
+		
+		linkList.setHead(linkList.reverseRecursion(linkList.getHead(), null));
 		System.out.println(linkList.toString());
 		linkList.setHead(linkList.reverseRecursion(linkList.getHead(), null));
 		System.out.println(linkList.toString());
+		linkList.printReverse(linkList.getHead());
+		
 	}
 	
 	@Test(expected=ArrayIndexOutOfBoundsException.class)

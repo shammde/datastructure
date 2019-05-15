@@ -2,7 +2,6 @@ package com.sham.pattern.decorater;
 
 public class DecoratorImpl {
 
-
 	public static void main(String[] args) {
 		Coffee c = new SimpleCoffee();
 		printInfo(c);

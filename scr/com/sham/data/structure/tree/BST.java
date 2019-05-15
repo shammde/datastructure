@@ -174,7 +174,7 @@ public class BST {
 		
 		if(root == null){
 			return null;
-		}else if(root.getLeftChild() == null){
+		}else if(root.getRightChild() == null){
 			return root;
 		}else{
 			return findMaxBST(root.getRightChild());
