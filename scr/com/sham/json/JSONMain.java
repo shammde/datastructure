@@ -10,7 +10,7 @@ public class JSONMain {
 		
 		JSONObject jObj = JSONUtils.getJSONObjectFromFile("/com/sham/json/first.json");
 		String names[] = JSONObject.getNames(jObj);
-		System.out.println(jObj);
+		System.out.println(jObj.toString(2));
 		for(String name : names){
 			try {
 				System.out.println(name + ": " + jObj.get(name));
@@ -24,15 +24,15 @@ public class JSONMain {
 		 */
 		try{
 		JSONObject obj = new JSONObject();
-		obj.put("Name", "crunchify.com");
-		obj.put("Author", "App Shah");
+		obj.put("Name", "sham.com");
+		obj.put("Author", "Ehtesham");
  
 		JSONArray company = new JSONArray();
-		company.put("Compnay: eBay");
-		company.put("Compnay: Paypal");
-		company.put("Compnay: Google");
+		company.put("Compnay: hello");
+		company.put("Compnay: hi");
+		company.put("Compnay: welcomne");
 		obj.put("Company List", company);
-		System.out.println(obj.toString());
+		System.out.println(obj.toString(5));
 		}catch(Exception e){}
 		
 		// try-with-resources statement based on post comment below :)
