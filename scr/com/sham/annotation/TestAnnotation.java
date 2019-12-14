@@ -9,7 +9,6 @@ class TestAnnotation{
 		Method m=h.getClass().getMethod("sayHello");  
 
 		MyAnnotation manno=m.getAnnotation(MyAnnotation.class);  
-		System.out.println("value is: "+manno.value1());
-		System.out.println("Hello World");
+		System.out.println("value is: "+manno.value1());  
 	}
 }
