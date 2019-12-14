@@ -1,5 +1,8 @@
 package com.sham.data.structure.node;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Node <E>{
 
 	private E data;
@@ -8,6 +11,7 @@ public class Node <E>{
 	private Node<E> prev;
 	private Node<E> leftChild;
 	private Node<E> rightChild;
+	private Set<Node<E>> childs;
 	boolean rThread;
 
 	public boolean isRThread() {
@@ -22,15 +26,22 @@ public class Node <E>{
 		this.data = null;
 		this.next = null;
 		this.prev = null;
+		this.childs = new HashSet<Node<E>>();
 	}
 
+	public void addNode(Node<E> childNode) {
+		childs.add(childNode);
+	}
+	
 	public Node(E data, Node<E> next, Node<E> prev){
+		this();
 		this.data = data;
 		this.next = next;
 		this.prev = prev;
 	}
 
 	public Node(E data){
+		this();
 		this.data = data;
 		this.next = null;
 		this.prev = null;

@@ -1,0 +1,19 @@
+{
+	"items": [
+		{
+			"itemId": "01u0b00002DB1hsAAD",
+			"parentId": "01u0b00002DB1gVAAT"
+		}
+	],
+	"methodName": "postCartsItems",
+	"cartId": "8010b000001gtiFAAQ",
+	"price": false,
+	"validate": false
+}
+
+/services/apexrest/vlocity_cmt/v2/cpq/carts/8010b000001gtiFAAQ/items
+
+PRODUCT-72423 Requires PRODUCT-24129.
+PRODUCT-56985 Requires PRODUCT-24129.
+
+
