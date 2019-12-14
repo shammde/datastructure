@@ -12,5 +12,6 @@ class TestAnnotation{
 		System.out.println("value is: "+manno.value1());
 		System.out.println("First change");
 		System.out.println("Second changes");
+		System.out.println("Third changes");
 	}
 }
